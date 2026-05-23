@@ -1,10 +1,28 @@
-import { useEffect, useMemo, useState } from "react";
-import { ArrowRight, Download, Github, Linkedin, Mail, Mouse, Trophy } from "lucide-react";
+import { Suspense, lazy, useEffect, useMemo, useState } from "react";
+import {
+  ArrowRight,
+  BriefcaseBusiness,
+  Download,
+  Github,
+  Linkedin,
+  Mail,
+  Mouse,
+  Sparkles
+} from "lucide-react";
 import { motion } from "framer-motion";
-import { heroRoles, socialLinks } from "../data/portfolio";
-import { SceneCanvas } from "./SceneCanvas";
+import { heroRoles, socialLinks, stats } from "../data/portfolio";
 
-const floatingBadges = ["AI", "ML", "DL", "NLP", "CV", "GEN-AI"];
+const SceneCanvas = lazy(() =>
+  import("./SceneCanvas").then((module) => ({ default: module.SceneCanvas }))
+);
+
+const focusBadges = [
+  "Data Preprocessing",
+  "EDA",
+  "Machine Learning",
+  "Deep Learning",
+  "Generative AI"
+];
 
 export function HeroSection() {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -20,31 +38,35 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen overflow-hidden px-5 pb-12 pt-28 sm:px-8 lg:px-12"
+      className="relative min-h-screen overflow-hidden px-5 pb-12 pt-24 sm:px-8 lg:px-12"
     >
       <div className="absolute inset-0 bg-aurora opacity-90" />
-      <div className="absolute left-1/2 top-0 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-cyan-300/10 blur-[130px]" />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:70px_70px] opacity-[0.16]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:72px_72px] opacity-[0.18]" />
+      <div className="absolute left-[10%] top-20 h-56 w-56 rounded-full bg-neon/12 blur-[120px]" />
+      <div className="absolute bottom-0 right-[8%] h-72 w-72 rounded-full bg-violet/18 blur-[140px]" />
 
-      <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.06fr_0.94fr]">
         <div className="relative z-10">
           <motion.span
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-cyanGlow"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyanGlow"
           >
-            <Trophy size={14} />
-            Futuristic AI Portfolio
+            <Sparkles size={14} />
+            AI / ML Graduate 2025
           </motion.span>
 
           <motion.h1
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
-            className="mt-8 max-w-4xl font-display text-4xl uppercase leading-tight text-white sm:text-6xl xl:text-7xl"
+            className="mt-8 max-w-4xl font-display text-4xl leading-[1.05] text-white sm:text-6xl xl:text-[4.6rem]"
           >
-            Hi, I&apos;m <span className="text-neon">Varun Kumar H C</span>
+            Varun Kumar H C
+            <span className="mt-4 block bg-gradient-to-r from-neon via-white to-mint bg-clip-text text-transparent">
+              Building cleaner data stories and practical AI systems.
+            </span>
           </motion.h1>
 
           <motion.div
@@ -53,9 +75,9 @@ export function HeroSection() {
             transition={{ delay: 0.35, duration: 0.8 }}
             className="mt-6 flex min-h-[3rem] items-center"
           >
-            <span className="font-display text-lg uppercase tracking-[0.28em] text-slate-300 sm:text-2xl">
+            <span className="font-display text-base tracking-[0.28em] text-slate-300 sm:text-xl">
               {currentRole}
-              <span className="ml-2 inline-block h-7 w-[2px] animate-pulse bg-cyan-300 align-middle" />
+              <span className="ml-2 inline-block h-7 w-[2px] animate-pulse bg-mint align-middle" />
             </span>
           </motion.div>
 
@@ -65,8 +87,8 @@ export function HeroSection() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="mt-8 max-w-2xl text-base leading-8 text-slate-300 md:text-lg"
           >
-            Aspiring Data Scientist and Machine Learning Engineer crafting intelligent systems,
-            data-led decisions, and premium AI experiences with a futuristic product mindset.
+            Fresher data scientist with hands-on experience in data preprocessing, exploratory
+            data analysis, machine learning, deep learning basics, and generative AI workflows.
           </motion.p>
 
           <motion.div
@@ -104,27 +126,76 @@ export function HeroSection() {
             <a href={socialLinks.email} className="icon-chip">
               <Mail size={18} />
             </a>
-            <a href={socialLinks.leetcode} target="_blank" rel="noreferrer" className="icon-chip">
-              <Trophy size={18} />
-            </a>
           </motion.div>
 
-          <div className="mt-12 flex flex-wrap gap-4">
-            {floatingBadges.map((badge, index) => (
+          <div className="mt-10 flex flex-wrap gap-3">
+            {focusBadges.map((badge, index) => (
               <motion.div
                 key={badge}
-                animate={{ y: [0, -10, 0] }}
-                transition={{ delay: index * 0.25, duration: 4.5, repeat: Infinity }}
-                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.28em] text-slate-200 backdrop-blur-xl"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ delay: index * 0.18, duration: 4.5, repeat: Infinity }}
+                className="rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-200 backdrop-blur-xl"
               >
                 {badge}
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:max-w-2xl">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.85 + index * 0.08, duration: 0.55 }}
+                className="rounded-[1.6rem] border border-white/10 bg-slate-950/[0.35] p-4 backdrop-blur-xl"
+              >
+                <div className="font-display text-2xl text-white">{stat.value}</div>
+                <p className="mt-2 text-[11px] uppercase tracking-[0.24em] text-slate-400">
+                  {stat.label}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
 
         <div className="relative z-10">
-          <SceneCanvas />
+          <div className="relative mx-auto max-w-[34rem]">
+            <div className="absolute -left-4 top-10 hidden rounded-3xl border border-white/10 bg-slate-950/[0.55] px-4 py-3 shadow-glow backdrop-blur-xl lg:block">
+              <p className="text-[11px] uppercase tracking-[0.22em] text-cyanGlow">Current Role</p>
+              <p className="mt-2 text-sm font-semibold text-white">Data Scientist Intern</p>
+              <p className="text-xs text-slate-400">AIML LABS PVT LTD</p>
+            </div>
+
+            <div className="absolute -right-4 bottom-12 hidden rounded-3xl border border-white/10 bg-slate-950/[0.55] px-4 py-3 shadow-violet backdrop-blur-xl lg:block">
+              <div className="flex items-center gap-2 text-coral">
+                <BriefcaseBusiness size={16} />
+                <span className="text-[11px] uppercase tracking-[0.22em]">Deployment Ready</span>
+              </div>
+              <p className="mt-2 text-sm text-slate-300">Render, Streamlit, and app-first ML projects</p>
+            </div>
+
+            <div className="glass-panel relative overflow-hidden p-4 md:p-5">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(124,242,255,0.16),transparent_30%),radial-gradient(circle_at_bottom,rgba(140,125,255,0.16),transparent_34%)]" />
+              <Suspense
+                fallback={
+                  <div className="h-[430px] rounded-[1.8rem] border border-white/10 bg-slate-950/40" />
+                }
+              >
+                <SceneCanvas />
+              </Suspense>
+              <div className="pointer-events-none absolute left-6 top-6 rounded-2xl border border-white/10 bg-slate-950/[0.55] px-4 py-3 backdrop-blur-xl">
+                <p className="text-[11px] uppercase tracking-[0.22em] text-cyanGlow">Focus Engine</p>
+                <p className="mt-2 text-sm font-semibold text-white">
+                  {"EDA -> ML -> Deployment"}
+                </p>
+              </div>
+              <div className="pointer-events-none absolute bottom-6 left-6 rounded-2xl border border-white/10 bg-slate-950/[0.55] px-4 py-3 backdrop-blur-xl">
+                <p className="text-[11px] uppercase tracking-[0.22em] text-cyanGlow">Resume Backed</p>
+                <p className="mt-2 text-sm text-slate-300">Projects aligned to internship and applied learning</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -132,8 +203,8 @@ export function HeroSection() {
         href="#about"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3 text-xs uppercase tracking-[0.32em] text-slate-400"
+        transition={{ delay: 1.15, duration: 0.8 }}
+        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-slate-400"
       >
         <span>Scroll</span>
         <div className="flex h-14 w-8 items-start justify-center rounded-full border border-white/15 p-2">

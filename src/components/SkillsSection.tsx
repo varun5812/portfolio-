@@ -16,8 +16,8 @@ export function SkillsSection() {
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Skills"
-          title="A Learning Stack Designed For AI Impact"
-          description="A high-signal view of the tools, libraries, and concepts powering my current trajectory."
+          title="Built For The Real Work Behind Data Science"
+          description="The strongest fresher signal is not just listing tools, but showing the workflow areas I can already contribute to with confidence."
         />
 
         <div className="flex flex-wrap justify-center gap-3">
@@ -26,10 +26,10 @@ export function SkillsSection() {
               key={group.category}
               type="button"
               onClick={() => setActiveCategory(group.category)}
-              className={`rounded-full border px-4 py-2 text-sm uppercase tracking-[0.18em] transition ${
+              className={`rounded-full border px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] transition ${
                 activeCategory === group.category
-                  ? "border-cyan-300/40 bg-cyan-300/10 text-cyanGlow"
-                  : "border-white/10 bg-white/5 text-slate-400 hover:text-white"
+                  ? "border-neon/40 bg-neon/10 text-cyanGlow"
+                  : "border-white/10 bg-white/[0.06] text-slate-400 hover:text-white"
               }`}
             >
               {group.category}
@@ -42,22 +42,17 @@ export function SkillsSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
-          className="mt-10 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]"
+          className="mt-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]"
         >
           <div className="glass-panel p-8">
             <activeGroup.icon className="h-10 w-10 text-neon" />
-            <h3 className="mt-5 font-display text-2xl uppercase tracking-[0.12em] text-white">
-              {activeGroup.category}
-            </h3>
-            <p className="mt-4 text-sm leading-7 text-slate-300">
-              Focused on a hands-on mix of analytics, modeling, visualization, and AI tooling with
-              clear real-world intent.
-            </p>
+            <h3 className="mt-5 font-display text-2xl text-white">{activeGroup.category}</h3>
+            <p className="mt-4 text-sm leading-7 text-slate-300">{activeGroup.intro}</p>
             <div className="mt-8 grid gap-3">
-              {activeGroup.items.slice(0, 3).map((item) => (
+              {activeGroup.items.slice(0, 4).map((item) => (
                 <div
                   key={item.name}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-200"
+                  className="rounded-[1.4rem] border border-white/10 bg-slate-950/[0.35] p-4 text-sm text-slate-200"
                 >
                   {item.name}
                 </div>
@@ -72,12 +67,10 @@ export function SkillsSection() {
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.08, duration: 0.45 }}
-                className="glass-panel group p-5"
+                className="glass-panel p-5"
               >
-                <div className="flex items-center justify-between">
-                  <span className="text-sm uppercase tracking-[0.2em] text-slate-300">
-                    {skill.name}
-                  </span>
+                <div className="flex items-center justify-between gap-4">
+                  <span className="text-sm font-medium text-slate-200">{skill.name}</span>
                   <span className="font-display text-neon">{skill.level}%</span>
                 </div>
                 <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
@@ -85,7 +78,7 @@ export function SkillsSection() {
                     initial={{ width: 0 }}
                     animate={{ width: `${skill.level}%` }}
                     transition={{ delay: 0.15 + index * 0.08, duration: 0.8 }}
-                    className="h-full rounded-full bg-gradient-to-r from-neon via-cyan-300 to-violet shadow-glow"
+                    className="h-full rounded-full bg-gradient-to-r from-neon via-mint to-violet shadow-glow"
                   />
                 </div>
               </motion.div>

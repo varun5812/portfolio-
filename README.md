@@ -1,6 +1,6 @@
 # Varun Kumar H C Portfolio
 
-A cinematic, futuristic portfolio built with React, Vite, TypeScript, Tailwind CSS, Framer Motion, GSAP, and React Three Fiber.
+A premium data science portfolio built with React, Vite, TypeScript, Tailwind CSS, Framer Motion, GSAP, and React Three Fiber.
 
 ## Tech Stack
 
@@ -14,14 +14,15 @@ A cinematic, futuristic portfolio built with React, Vite, TypeScript, Tailwind C
 
 ## Features
 
-- Full-screen premium hero with rotating AI roles
-- Dark futuristic visual system with aurora lighting and glassmorphism
+- Full-screen premium hero with fresher AI/data positioning
+- Glassmorphism-led dark visual system with aurora lighting
 - Reusable section-based React architecture
-- Animated skills, projects, timeline, dashboard, and contact form
+- Resume-backed projects, skills, timeline, dashboard, and contact form
 - React Three Fiber hero visualization
 - Smooth loading screen, floating dock, custom cursor, and scroll progress
 - Deployment-ready for Vercel and Render
 - Environment variable support for social links and resume URL
+- Production `npm start` server for Render web service deployments
 
 ## Getting Started
 
@@ -42,6 +43,12 @@ Preview the production build:
 npm run preview
 ```
 
+Run the production server locally:
+
+```bash
+npm start
+```
+
 ## Environment Variables
 
 Copy `.env.example` to `.env` and customize:
@@ -49,9 +56,9 @@ Copy `.env.example` to `.env` and customize:
 ```env
 VITE_GITHUB_URL=https://github.com/varun5812
 VITE_LINKEDIN_URL=https://www.linkedin.com/
-VITE_EMAIL=varunkumar@example.com
+VITE_EMAIL=varunkumar5812@gmail.com
 VITE_LEETCODE_URL=https://leetcode.com/
-VITE_RESUME_URL=/resume.pdf
+VITE_RESUME_URL=/Varun_Resume__.pdf
 VITE_PROJECTS_URL=#projects
 ```
 
@@ -65,8 +72,11 @@ VITE_PROJECTS_URL=#projects
 
 ### Render
 
-- Static site
-- Build command: `npm install && npm run build`
-- Publish directory: `dist`
+- Static Site:
+  - Build command: `npm install && npm run build`
+  - Publish directory: `dist`
+- Web Service fallback:
+  - Build command: `npm install && npm run build`
+  - Start command: `npm start`
 
 `render.yaml` and `vercel.json` are included for convenience.

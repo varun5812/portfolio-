@@ -5,29 +5,35 @@ export default {
   theme: {
     extend: {
       colors: {
-        base: "#050816",
-        panel: "#0b1120",
-        neon: "#00F5FF",
-        violet: "#7B2EFF",
-        cyanGlow: "#7af7ff",
-        blush: "#ff78d6"
+        base: "#07111f",
+        panel: "#0f1a2b",
+        neon: "#7cf2ff",
+        mint: "#84f8c6",
+        violet: "#8c7dff",
+        coral: "#ff9a7a",
+        cyanGlow: "#c2fbff",
+        blush: "#ff7bcf"
       },
       fontFamily: {
-        display: ["Orbitron", "sans-serif"],
-        body: ["Manrope", "sans-serif"]
+        display: ["Sora", "sans-serif"],
+        body: ["Plus Jakarta Sans", "sans-serif"]
       },
       boxShadow: {
-        glow: "0 0 30px rgba(0,245,255,0.2)",
-        violet: "0 0 45px rgba(123,46,255,0.22)"
+        glow: "0 18px 60px rgba(124,242,255,0.18)",
+        violet: "0 20px 65px rgba(140,125,255,0.2)"
       },
       backgroundImage: {
         aurora:
-          "radial-gradient(circle at top left, rgba(0,245,255,0.28), transparent 34%), radial-gradient(circle at top right, rgba(255,120,214,0.22), transparent 28%), radial-gradient(circle at bottom, rgba(123,46,255,0.28), transparent 34%)"
+          "radial-gradient(circle at top left, rgba(124,242,255,0.22), transparent 34%), radial-gradient(circle at top right, rgba(255,123,207,0.16), transparent 28%), radial-gradient(circle at bottom, rgba(132,248,198,0.14), transparent 34%), radial-gradient(circle at 60% 40%, rgba(140,125,255,0.18), transparent 40%)"
       },
       keyframes: {
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-12px)" }
+        },
+        drift: {
+          "0%, 100%": { transform: "translate3d(0px, 0px, 0px)" },
+          "50%": { transform: "translate3d(0px, -10px, 0px)" }
         },
         pulseRing: {
           "0%": { transform: "scale(0.95)", opacity: "0.5" },
@@ -41,6 +47,7 @@ export default {
       },
       animation: {
         float: "float 6s ease-in-out infinite",
+        drift: "drift 5s ease-in-out infinite",
         pulseRing: "pulseRing 3s ease-out infinite",
         marquee: "marquee 18s linear infinite"
       }

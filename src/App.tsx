@@ -18,7 +18,7 @@ export default function App() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setReady(true), 1500);
+    const timer = window.setTimeout(() => setReady(true), 1300);
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -49,10 +49,12 @@ export default function App() {
 
       <div
         data-ambient-glow
-        className="pointer-events-none fixed left-1/2 top-1/2 z-0 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/10 blur-[140px]"
+        className="pointer-events-none fixed left-1/2 top-1/2 z-0 h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-neon/10 blur-[160px]"
       />
 
-      <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,8,22,0.22)_52%,rgba(5,8,22,0.88)_100%)]" />
+      <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_top,rgba(124,242,255,0.08),transparent_22%),radial-gradient(circle_at_bottom_right,rgba(140,125,255,0.16),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent_18%)]" />
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.9)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.9)_1px,transparent_1px)] [background-size:120px_120px]" />
+      <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(7,17,31,0.2)_55%,rgba(7,17,31,0.92)_100%)]" />
 
       <motion.main
         initial={{ opacity: 0 }}
