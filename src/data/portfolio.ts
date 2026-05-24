@@ -13,7 +13,7 @@ export const socialLinks = {
   linkedin: import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/",
   email: `mailto:${import.meta.env.VITE_EMAIL || "varunkumar5812@gmail.com"}`,
   leetcode: import.meta.env.VITE_LEETCODE_URL || "https://leetcode.com/",
-  resume: import.meta.env.VITE_RESUME_URL || "/Varun_Resume__.pdf"
+  resume: import.meta.env.VITE_RESUME_URL || "/Varun____.pdf"
 };
 
 export const heroRoles = [
