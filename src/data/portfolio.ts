@@ -194,30 +194,32 @@ export const projects = [
     previewLabel: "RAG pipeline"
   },
   {
-    type: "Machine Learning",
-    title: "Customer Churn Prediction In Retail",
+    type: "AI Research Automation",
+    title: "ResearchMind: AI-Powered Research System",
     summary:
-      "Designed a churn prediction workflow for a retail loyalty program using purchase behavior, engagement signals, and promotional response data.",
+      "Developed an AI-powered research application that generates structured research reports from user topics using web search, content extraction, and summarization in a Streamlit interface.",
     impact:
-      "The project was positioned around identifying high-risk customers and supporting targeted retention strategies.",
+      "This project shows applied AI automation beyond prediction models, combining search, scraping, cleaning, and structured report generation into one usable workflow.",
     tech: [
       "Python",
-      "Machine Learning",
-      "XGBoost",
-      "Decision Trees",
-      "Random Forest",
-      "Feature Engineering",
-      "Azure ML"
+      "Streamlit",
+      "Tavily API",
+      "BeautifulSoup",
+      "Requests",
+      "Web Scraping",
+      "Research Automation"
     ],
     highlights: [
-      "Processed customer transaction and engagement data for modeling and segmentation.",
-      "Compared multiple classification models including XGBoost and Random Forest.",
-      "Paired model outputs with dashboard thinking for churn-risk visibility and action."
+      "Built an automated research pipeline that turns user topics into structured downloadable Markdown reports.",
+      "Integrated Tavily API for relevant web search results and used Requests with BeautifulSoup for content extraction.",
+      "Cleaned and processed scraped webpage content to generate summaries, key findings, and source-backed output in real time."
     ],
-    githubUrl: socialLinks.github,
-    githubLabel: "GitHub Profile",
+    liveUrl: "https://researchmind-ai-oq52.onrender.com/",
+    liveLabel: "Open Live App",
+    githubUrl: "https://github.com/varun5812/ResearchMind-AI",
+    githubLabel: "View Repo",
     accent: "from-[#84f8c6] via-[#7cf2ff] to-[#8c7dff]",
-    previewLabel: "Churn scoring"
+    previewLabel: "Research reports"
   },
   {
     type: "Machine Learning Deployment",
