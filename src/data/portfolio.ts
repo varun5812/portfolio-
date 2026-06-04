@@ -168,30 +168,36 @@ export const skills = [
 
 export const projects = [
   {
-    type: "Generative AI / RAG",
-    title: "Customer Support Chatbot Automation",
+    type: "LLM Application / Meeting Intelligence",
+    title: "AI Video Assistant: Meeting Intelligence Platform",
     summary:
-      "Built a context-aware customer support chatbot using retrieval-augmented generation to answer queries from internal knowledge base documents and FAQs.",
+      "Developed an AI-powered meeting intelligence platform that converts YouTube videos, uploaded audio and video files, and transcripts into summaries, action items, key decisions, and insights through an interactive Streamlit interface.",
     impact:
-      "Focused on combining retrieval quality with better prompt structure so answers stay relevant and grounded.",
+      "This project highlights practical applied AI: transcription, summarization, multilingual insights, conversational Q&A, and MCP-based tool integration in one end-to-end workflow.",
     tech: [
       "Python",
       "LangChain",
       "RAG",
-      "GPT-3.5 / Mistral",
-      "Sentence Transformers",
-      "ChromaDB",
-      "Flask"
+      "Groq API",
+      "Whisper",
+      "Llama 3.1",
+      "Streamlit",
+      "yt-dlp",
+      "FastMCP",
+      "pydub",
+      "python-dotenv"
     ],
     highlights: [
-      "Orchestrated document loading, chunking, embeddings, and retrieval workflow with LangChain.",
-      "Integrated vector search with ChromaDB for faster context retrieval from knowledge documents.",
-      "Designed a lightweight Flask interface for interaction, testing, and response validation."
+      "Built an end-to-end AI pipeline for transcription, summarization, insight extraction, and conversational Q&A.",
+      "Implemented multi-source YouTube transcript retrieval with youtube-transcript-api and yt-dlp, alongside Groq Whisper-large-v3 speech-to-text transcription.",
+      "Developed a lightweight BM25-style RAG system and LangChain LCEL workflows using Llama 3.1, with multilingual support and MCP server integration through FastMCP."
     ],
+    liveUrl: "https://ai-videos.streamlit.app/",
+    liveLabel: "Open Live App",
     githubUrl: socialLinks.github,
     githubLabel: "GitHub Profile",
     accent: "from-[#79f0ff] via-[#7cd4ff] to-[#8c7dff]",
-    previewLabel: "RAG pipeline"
+    previewLabel: "Meeting insights"
   },
   {
     type: "AI Research Automation",
