@@ -1,78 +1,97 @@
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { skills } from "../../data/portfolio";
-import { Database, BrainCircuit, LineChart, Code, Sparkles, Workflow } from "lucide-react";
-
-const icons = {
-  "Data Science & Analysis": LineChart,
-  "Machine Learning": BrainCircuit,
-  "Deep Learning & GenAI": Sparkles,
-  "Data Engineering & Deployment": Workflow,
-  "Programming & Tools": Code,
-  "Core Skills": Database,
-};
 
 export function SkillsSection() {
+  const [activeCategory, setActiveCategory] = useState(skills[0].category);
+  const activeGroup = useMemo(
+    () => skills.find((s) => s.category === activeCategory) ?? skills[0],
+    [activeCategory]
+  );
+
   return (
-    <section id="skills" className="section-padding relative z-10">
+    <section id="skills" className="section-padding">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-16 text-center">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
+        <div className="mb-14">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-display text-4xl font-bold text-white sm:text-5xl"
+            className="text-xs font-semibold uppercase tracking-[0.25em] text-sakuraDeep"
           >
-            Technical Arsenal
-          </motion.h2>
-          <motion.p 
+            Skills
+          </motion.p>
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mt-4 text-slate-400"
+            className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl"
           >
-            Core competencies architected into a Bento Box grid
-          </motion.p>
+            Technical <span className="serif italic text-inkLight">Arsenal</span>
+          </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[minmax(200px,auto)]">
-          {skills.map((group, i) => {
-            const Icon = icons[group.category as keyof typeof icons] || Database;
-            const isLarge = i === 0 || i === 3;
-            const spanClass = isLarge ? "md:col-span-2 lg:col-span-2" : "col-span-1";
+        {/* Category tabs */}
+        <div className="flex flex-wrap gap-2 mb-10">
+          {skills.map((group) => (
+            <button
+              key={group.category}
+              type="button"
+              onClick={() => setActiveCategory(group.category)}
+              className={`rounded-xl px-4 py-2.5 text-xs font-semibold transition-all duration-300 ${
+                activeCategory === group.category
+                  ? "bg-ink text-cream shadow-hover"
+                  : "border border-warmGray bg-white text-inkMuted hover:border-sakura/50 hover:text-ink"
+              }`}
+            >
+              {group.category}
+            </button>
+          ))}
+        </div>
 
-            return (
+        <motion.div
+          key={activeGroup.category}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]"
+        >
+          {/* Category info */}
+          <div className="paper-card p-8">
+            <activeGroup.icon className="h-8 w-8 text-sakuraDeep" />
+            <h3 className="mt-5 font-display text-2xl font-bold text-ink">
+              {activeGroup.category}
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-inkMuted">{activeGroup.intro}</p>
+          </div>
+
+          {/* Skill bars */}
+          <div className="grid gap-3 sm:grid-cols-2">
+            {activeGroup.items.map((skill, i) => (
               <motion.div
-                key={group.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className={`glass-panel glass-panel-hover p-6 flex flex-col group ${spanClass}`}
+                key={skill.name}
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.06, duration: 0.35 }}
+                className="paper-card p-4 hover:border-sakura/40 transition-all duration-300"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/10 group-hover:bg-accentPurple/20 transition-colors">
-                    <Icon className="text-accentCyan" size={20} />
-                  </div>
-                  <h3 className="font-display text-lg font-bold text-white">{group.category}</h3>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm font-medium text-ink">{skill.name}</span>
+                  <span className="font-display text-sm font-bold text-sakuraDeep">{skill.level}%</span>
                 </div>
-                
-                <p className="text-sm text-slate-400 mb-6 flex-grow">{group.intro}</p>
-                
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {group.items.map((item) => (
-                    <span 
-                      key={item.name}
-                      className="rounded-lg border border-white/5 bg-white/5 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-accentPink/30 hover:bg-accentPink/10"
-                    >
-                      {item.name}
-                    </span>
-                  ))}
+                <div className="h-2 overflow-hidden rounded-full bg-beige">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${skill.level}%` }}
+                    transition={{ delay: 0.1 + i * 0.06, duration: 0.7 }}
+                    className="h-full rounded-full bg-gradient-to-r from-sakura via-coral to-lavender"
+                  />
                 </div>
               </motion.div>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
