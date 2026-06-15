@@ -101,3 +101,98 @@ textarea {
     @apply rounded-[1.4rem] border border-white/10 bg-white/[0.06] px-4 py-4 text-sm normal-case tracking-normal text-white outline-none transition focus:border-neon/40 focus:bg-white/10 focus:shadow-glow;
   }
 }
+
+/* Custom UI Tweaks for World-Class Aesthetic */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.01);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 242, 255, 0.4);
+}
+
+/* Range input styling for simulator sliders */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+input[type="range"]:focus {
+  outline: none;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  height: 14px;
+  width: 14px;
+  border-radius: 9999px;
+  background: #7cf2ff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
+  box-shadow: 0 0 10px rgba(124, 242, 255, 0.7);
+  transition: transform 0.1s ease;
+}
+input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.35);
+}
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+input[type="range"]::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  border-radius: 9999px;
+  background: #7cf2ff;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 10px rgba(124, 242, 255, 0.7);
+  transition: transform 0.1s ease;
+}
+input[type="range"]:active::-moz-range-thumb {
+  transform: scale(1.35);
+}
+
+/* Holographic scanline overlay */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+.scanline-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(124, 242, 255, 0.04) 50%,
+    transparent 52%
+  );
+  background-size: 100% 6px;
+  pointer-events: none;
+  z-index: 20;
+  animation: scanline 12s linear infinite;
+}
+
+

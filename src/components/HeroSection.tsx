@@ -175,7 +175,7 @@ export function HeroSection() {
               <p className="mt-2 text-sm text-slate-300">Render, Streamlit, and app-first ML projects</p>
             </div>
 
-            <div className="glass-panel relative overflow-hidden p-4 md:p-5">
+            <div className="glass-panel relative overflow-hidden p-4 md:p-5 scanline-overlay">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(124,242,255,0.16),transparent_30%),radial-gradient(circle_at_bottom,rgba(140,125,255,0.16),transparent_34%)]" />
               <Suspense
                 fallback={

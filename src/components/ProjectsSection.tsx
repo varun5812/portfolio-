@@ -15,44 +15,56 @@ export function ProjectsSection() {
         />
 
         <div className="grid gap-6 lg:grid-cols-3">
-          {projects.map((project, index) => (
-            <motion.article
-              key={project.title}
-              initial={{ opacity: 0, y: 26 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: index * 0.12, duration: 0.65 }}
-              className="project-card group"
-            >
-              <div className={`project-card-glow bg-gradient-to-br ${project.accent}`} />
-              <div className="relative z-10 flex h-full flex-col">
-                <div className={`rounded-[1.7rem] bg-gradient-to-br ${project.accent} p-[1px]`}>
-                  <div className="rounded-[calc(1.7rem-1px)] border border-white/[0.08] bg-slate-950/[0.85] p-5">
-                    <div className="flex items-start justify-between gap-4">
-                      <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-200">
-                        {project.type}
-                      </span>
-                      <span className="text-[11px] uppercase tracking-[0.2em] text-cyanGlow">
-                        {project.previewLabel}
-                      </span>
-                    </div>
-                    <div className="mt-10 grid grid-cols-4 gap-3">
-                      {[36, 62, 48, 78].map((value, barIndex) => (
-                        <div key={`${project.title}-${barIndex}`} className="space-y-3">
-                          <div className="h-16 rounded-full bg-white/[0.06]">
-                            <motion.div
-                              initial={{ height: 0 }}
-                              whileInView={{ height: `${value}%` }}
-                              viewport={{ once: true }}
-                              transition={{ delay: barIndex * 0.08, duration: 0.7 }}
-                              className="mx-auto w-full rounded-full bg-gradient-to-t from-neon via-mint to-violet"
-                            />
-                          </div>
+          {projects.map((project, index) => {
+            const projectImages: Record<string, string> = {
+              "AI Video Assistant: Meeting Intelligence Platform": "/images/generative_ai.png",
+              "ResearchMind: AI-Powered Research System": "/images/eda_clustering.png",
+              "Heart Disease Prediction Web App": "/images/machine_learning.png"
+            };
+
+            const getProjectImage = (title: string) => {
+              return projectImages[title] || "/images/neural_networks.png";
+            };
+
+            return (
+              <motion.article
+                key={project.title}
+                initial={{ opacity: 0, y: 26 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ delay: index * 0.12, duration: 0.65 }}
+                className="project-card group"
+              >
+                <div className={`project-card-glow bg-gradient-to-br ${project.accent}`} />
+                <div className="relative z-10 flex h-full flex-col">
+                  <div className={`rounded-[1.7rem] bg-gradient-to-br ${project.accent} p-[1px]`}>
+                    <div className="rounded-[calc(1.7rem-1px)] border border-white/[0.08] bg-slate-950/[0.85] p-5">
+                      <div className="flex items-start justify-between gap-4">
+                        <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-200">
+                          {project.type}
+                        </span>
+                        <span className="text-[11px] uppercase tracking-[0.2em] text-cyanGlow">
+                          {project.previewLabel}
+                        </span>
+                      </div>
+                      
+                      {/* Decode visual container */}
+                      <div className="relative h-44 overflow-hidden rounded-2xl border border-white/10 bg-slate-900 mt-6">
+                        {/* Blurred/Raw background image by default, unblurs (despiler) on hover */}
+                        <div
+                          className="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-out filter blur-[8px] saturate-[0.8] brightness-[0.7] group-hover:blur-none group-hover:scale-105 group-hover:saturate-1.2 group-hover:brightness-100"
+                          style={{ backgroundImage: `url('${getProjectImage(project.title)}')` }}
+                        />
+                        {/* Gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent transition-opacity duration-500 opacity-80 group-hover:opacity-45" />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="rounded-full border border-white/20 bg-slate-950/70 px-4 py-2 text-[9px] font-mono tracking-widest text-cyanGlow uppercase backdrop-blur-md transition-all duration-500 group-hover:scale-95 group-hover:border-neon/40 group-hover:text-white">
+                            [ DECODING INSIGHTS ]
+                          </span>
                         </div>
-                      ))}
+                      </div>
                     </div>
                   </div>
-                </div>
 
                 <div className="mt-6 flex-1">
                   <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
@@ -110,7 +122,7 @@ export function ProjectsSection() {
                 </div>
               </div>
             </motion.article>
-          ))}
+          )})}
         </div>
       </div>
     </AnimatedSection>

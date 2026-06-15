@@ -13,6 +13,8 @@ import { LoadingScreen } from "./components/LoadingScreen";
 import { ProjectsSection } from "./components/ProjectsSection";
 import { ScrollProgress } from "./components/ScrollProgress";
 import { SkillsSection } from "./components/SkillsSection";
+import { BackgroundDecoder } from "./components/BackgroundDecoder";
+
 
 export default function App() {
   const [ready, setReady] = useState(false);
@@ -41,6 +43,7 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-base font-body text-white">
+      <BackgroundDecoder />
       <LoadingScreen ready={ready} />
       <ScrollProgress />
       <CustomCursor />
