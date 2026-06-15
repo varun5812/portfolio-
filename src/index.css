@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,650;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,58 +8,85 @@
   scroll-behavior: smooth;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html, body, #root { min-height: 100%; }
+html, body, #root {
+  min-height: 100%;
+}
 
 body {
   margin: 0;
-  background-color: #FAF9F6;
+  background-color: #FAF8F5;
   font-family: "Plus Jakarta Sans", sans-serif;
   overflow-x: hidden;
-  color: #1A1A1A;
+  color: #1E1E24;
 }
 
 ::selection {
-  background: rgba(255, 183, 197, 0.4);
-  color: #1A1A1A;
+  background: rgba(255, 196, 208, 0.5);
+  color: #1E1E24;
 }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #FAF9F6; }
-::-webkit-scrollbar-thumb { background: #E8E2D6; border-radius: 999px; }
-::-webkit-scrollbar-thumb:hover { background: #FFB7C5; }
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #EAE3D2;
+  border-radius: 999px;
+  border: 2px solid #FAF8F5;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FFB3C1;
+}
 
 @layer components {
-  .paper-card {
-    @apply rounded-2xl border border-warmGray/60 bg-white shadow-soft transition-all duration-500;
+  .journal-card {
+    @apply rounded-3xl border-2 border-warmGray bg-paper p-6 shadow-cozy transition-all duration-500 hover:shadow-journal hover:border-sakuraDeep/40;
   }
 
-  .paper-card-hover {
-    @apply paper-card hover:shadow-hover hover:-translate-y-1 hover:border-sakura/40;
+  .journal-card-sketch {
+    @apply rounded-2xl border-[3px] border-ink bg-paper p-6 shadow-sketch transition-all duration-300 hover:shadow-sketchHover hover:-translate-x-0.5 hover:-translate-y-0.5;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-7 py-3.5 text-sm font-semibold text-cream transition-all duration-300 hover:-translate-y-0.5 hover:shadow-hover;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border-[3px] border-ink bg-ink px-6 py-3 text-xs font-bold uppercase tracking-wider text-cream transition-all duration-300 hover:bg-cream hover:text-ink hover:shadow-sketch active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_0px_#1E1E24];
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border-2 border-ink/10 bg-cream px-7 py-3.5 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-sakura hover:shadow-sakura;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border-[3px] border-ink bg-cream px-6 py-3 text-xs font-bold uppercase tracking-wider text-ink transition-all duration-300 hover:bg-ink hover:text-cream hover:shadow-sketch active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_0px_#1E1E24];
   }
 
-  .badge {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-warmGray bg-beige px-3.5 py-1.5 text-xs font-medium text-inkMuted;
+  .badge-tag {
+    @apply inline-flex items-center justify-center rounded px-3 py-1 text-[11px] font-bold text-ink shadow-[2px_2px_0px_0px_#1E1E24] border-2 border-ink;
   }
 
-  .section-padding {
-    @apply px-6 py-24 sm:px-8 md:py-32 lg:px-12;
+  .washi-tape-pink {
+    @apply badge-tag bg-sakura -rotate-1 hover:rotate-0 transition-transform;
   }
 
-  .gradient-text-warm {
-    @apply bg-gradient-to-r from-sakuraDeep via-coral to-lavender bg-clip-text text-transparent;
+  .washi-tape-matcha {
+    @apply badge-tag bg-matcha rotate-1 hover:rotate-0 transition-transform;
+  }
+
+  .washi-tape-sky {
+    @apply badge-tag bg-sky -rotate-2 hover:rotate-0 transition-transform;
+  }
+
+  .washi-tape-apricot {
+    @apply badge-tag bg-apricot rotate-2 hover:rotate-0 transition-transform;
   }
 
   .serif {
     font-family: "Playfair Display", serif;
+  }
+
+  .hand-drawn-border {
+    border-image: repeating-linear-gradient(45deg, #1E1E24, #1E1E24 10px, transparent 10px, transparent 20px) 15;
   }
 }

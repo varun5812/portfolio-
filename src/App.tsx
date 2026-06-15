@@ -10,10 +10,14 @@ import { Navbar } from "./components/ui/Navbar";
 
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-cream font-body text-ink">
+    <div className="relative min-h-screen bg-cream font-body text-ink overflow-x-hidden">
+      {/* Background Anime Particles and Clouds */}
       <SakuraPetals />
+
+      {/* Floating Bookmark Navbar */}
       <Navbar />
-      <main>
+
+      <main className="relative z-10">
         <HeroSection />
         <AboutSection />
         <SkillsSection />
@@ -22,8 +26,17 @@ export default function App() {
         <WorkflowSection />
         <ContactSection />
       </main>
-      <footer className="border-t border-warmGray/60 bg-white py-8 text-center text-sm text-inkMuted">
-        <p>© 2025 Varun Kumar H C · Built with passion</p>
+
+      {/* Cozy Footer */}
+      <footer className="border-t-[3px] border-ink bg-paper py-10 text-center relative z-10">
+        <div className="mx-auto max-w-5xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="font-serif text-sm font-bold text-ink">
+            varun<span className="text-sakuraDeep font-display">.</span>
+          </p>
+          <p className="text-xs font-bold text-inkMuted uppercase tracking-wider">
+            © 2025 Varun Kumar H C · Handcrafted with Passion 🌸
+          </p>
+        </div>
       </footer>
     </div>
   );
