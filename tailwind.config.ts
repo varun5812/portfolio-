@@ -5,46 +5,37 @@ export default {
   theme: {
     extend: {
       colors: {
-        base: "#050507",
-        surface: "#0f0f14",
-        surfaceLight: "#1a1a24",
-        accent: "#7c3aed",
-        accentLight: "#a78bfa",
-        neon: "#06b6d4",
-        mint: "#10b981",
-        violet: "#8b5cf6",
-        coral: "#f43f5e",
-        cyanGlow: "#22d3ee",
-        blush: "#ec4899"
+        bgMain: "#0F172A",
+        bgSecondary: "#1E293B",
+        accentPurple: "#A855F7",
+        accentCyan: "#06B6D4",
+        accentPink: "#EC4899"
       },
       fontFamily: {
         display: ["Sora", "sans-serif"],
         body: ["Plus Jakarta Sans", "sans-serif"]
       },
       boxShadow: {
-        glow: "0 0 40px rgba(124,58,237,0.15)",
-        card: "0 25px 50px -12px rgba(0,0,0,0.6)",
-        neon: "0 0 30px rgba(6,182,212,0.2)"
+        glass: "0 8px 32px 0 rgba(0, 0, 0, 0.3)",
+        glassHover: "0 8px 32px 0 rgba(168, 85, 247, 0.25)"
       },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "accent-gradient":
-          "linear-gradient(135deg, #7c3aed 0%, #3b82f6 50%, #06b6d4 100%)"
+        "aurora-gradient":
+          "linear-gradient(135deg, rgba(168, 85, 247, 0.5) 0%, rgba(6, 182, 212, 0.5) 50%, rgba(236, 72, 153, 0.5) 100%)",
       },
       keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-8px)" }
+        aurora: {
+          "0%, 100%": { transform: "rotate(0deg) scale(1)", filter: "hue-rotate(0deg)" },
+          "50%": { transform: "rotate(180deg) scale(1.2)", filter: "hue-rotate(90deg)" }
         },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" }
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-15px)" }
         }
       },
       animation: {
-        float: "float 6s ease-in-out infinite",
-        shimmer: "shimmer 3s ease-in-out infinite",
-        "pulse-slow": "pulse 4s ease-in-out infinite"
+        aurora: "aurora 20s linear infinite",
+        float: "float 6s ease-in-out infinite"
       }
     }
   },
