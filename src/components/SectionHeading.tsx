@@ -1,29 +1,40 @@
 import { motion } from "framer-motion";
 
-type SectionHeadingProps = {
+interface Props {
   eyebrow: string;
   title: string;
   description: string;
-};
+}
 
-export function SectionHeading({
-  eyebrow,
-  title,
-  description
-}: SectionHeadingProps) {
+export function SectionHeading({ eyebrow, title, description }: Props) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.7 }}
-      className="mx-auto mb-12 max-w-3xl text-center"
-    >
-      <span className="mb-4 inline-flex rounded-full border border-white/10 bg-white/[0.06] px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyanGlow">
+    <div className="mb-16 max-w-2xl">
+      <motion.span
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-xs font-semibold uppercase tracking-[0.25em] text-accent"
+      >
         {eyebrow}
-      </span>
-      <h2 className="font-display text-3xl leading-tight text-white md:text-5xl">{title}</h2>
-      <p className="mt-4 text-sm leading-7 text-slate-300 md:text-base">{description}</p>
-    </motion.div>
+      </motion.span>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.1, duration: 0.6 }}
+        className="mt-4 font-display text-3xl font-bold leading-tight text-white sm:text-4xl"
+      >
+        {title}
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        className="mt-4 text-base leading-relaxed text-zinc-400"
+      >
+        {description}
+      </motion.p>
+    </div>
   );
 }

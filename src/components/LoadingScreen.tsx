@@ -1,28 +1,27 @@
 import { motion, AnimatePresence } from "framer-motion";
 
-type LoadingScreenProps = {
-  ready: boolean;
-};
-
-export function LoadingScreen({ ready }: LoadingScreenProps) {
+export function LoadingScreen({ ready }: { ready: boolean }) {
   return (
     <AnimatePresence>
       {!ready && (
         <motion.div
-          initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.9, ease: "easeInOut" }}
-          className="fixed inset-0 z-[90] flex items-center justify-center bg-base"
+          transition={{ duration: 0.5 }}
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-base"
         >
-          <div className="relative flex flex-col items-center gap-6">
-            <div className="absolute h-28 w-28 animate-pulse rounded-full bg-cyan-300/20 blur-3xl" />
-            <div className="relative h-20 w-20 rounded-full border border-cyan-300/20">
-              <div className="absolute inset-3 animate-spin rounded-full border-t-2 border-neon" />
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="flex flex-col items-center"
+          >
+            <div className="relative h-10 w-10">
+              <div className="absolute inset-0 rounded-lg bg-accent animate-ping opacity-20" />
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-accent to-neon" />
             </div>
-            <p className="font-display text-sm uppercase tracking-[0.35em] text-slate-300">
-              Initializing AI Presence
+            <p className="mt-6 text-[10px] font-medium uppercase tracking-[0.3em] text-zinc-600">
+              Loading
             </p>
-          </div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

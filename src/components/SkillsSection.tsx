@@ -7,29 +7,29 @@ import { SectionHeading } from "./SectionHeading";
 export function SkillsSection() {
   const [activeCategory, setActiveCategory] = useState(skills[0].category);
   const activeGroup = useMemo(
-    () => skills.find((item) => item.category === activeCategory) ?? skills[0],
+    () => skills.find((s) => s.category === activeCategory) ?? skills[0],
     [activeCategory]
   );
 
   return (
-    <AnimatedSection id="skills" className="px-5 sm:px-8 lg:px-12">
-      <div className="mx-auto max-w-7xl">
+    <AnimatedSection id="skills" className="section-padding">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="Skills"
-          title="Built For The Real Work Behind Data Science"
-          description="The strongest fresher signal is not just listing tools, but showing the workflow areas I can already contribute to with confidence."
+          title="Technical Toolkit"
+          description="Core competencies across the data science lifecycle — from raw data to deployed models."
         />
 
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex flex-wrap gap-2 mb-10">
           {skills.map((group) => (
             <button
               key={group.category}
               type="button"
               onClick={() => setActiveCategory(group.category)}
-              className={`rounded-full border px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] transition ${
+              className={`rounded-lg px-4 py-2 text-xs font-medium transition-all duration-300 ${
                 activeCategory === group.category
-                  ? "border-neon/40 bg-neon/10 text-cyanGlow"
-                  : "border-white/10 bg-white/[0.06] text-slate-400 hover:text-white"
+                  ? "bg-accent text-white shadow-glow"
+                  : "border border-white/[0.06] bg-white/[0.03] text-zinc-500 hover:text-white hover:border-white/10"
               }`}
             >
               {group.category}
@@ -39,46 +39,38 @@ export function SkillsSection() {
 
         <motion.div
           key={activeGroup.category}
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
-          className="mt-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]"
+          transition={{ duration: 0.4 }}
+          className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]"
         >
-          <div className="glass-panel p-8">
-            <activeGroup.icon className="h-10 w-10 text-neon" />
-            <h3 className="mt-5 font-display text-2xl text-white">{activeGroup.category}</h3>
-            <p className="mt-4 text-sm leading-7 text-slate-300">{activeGroup.intro}</p>
-            <div className="mt-8 grid gap-3">
-              {activeGroup.items.slice(0, 4).map((item) => (
-                <div
-                  key={item.name}
-                  className="rounded-[1.4rem] border border-white/10 bg-slate-950/[0.35] p-4 text-sm text-slate-200"
-                >
-                  {item.name}
-                </div>
-              ))}
-            </div>
+          <div className="glass-card p-8">
+            <activeGroup.icon className="h-8 w-8 text-accent" />
+            <h3 className="mt-5 font-display text-2xl font-bold text-white">
+              {activeGroup.category}
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-400">{activeGroup.intro}</p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {activeGroup.items.map((skill, index) => (
+          <div className="grid gap-3 sm:grid-cols-2">
+            {activeGroup.items.map((skill, i) => (
               <motion.div
                 key={skill.name}
-                initial={{ opacity: 0, scale: 0.96 }}
+                initial={{ opacity: 0, scale: 0.97 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.08, duration: 0.45 }}
-                className="glass-panel p-5"
+                transition={{ delay: i * 0.06, duration: 0.35 }}
+                className="glass-card p-4 hover:border-accent/15 transition-all duration-300"
               >
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-sm font-medium text-slate-200">{skill.name}</span>
-                  <span className="font-display text-neon">{skill.level}%</span>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm text-zinc-300">{skill.name}</span>
+                  <span className="font-display text-sm font-semibold text-accent">{skill.level}%</span>
                 </div>
-                <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
+                <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${skill.level}%` }}
-                    transition={{ delay: 0.15 + index * 0.08, duration: 0.8 }}
-                    className="h-full rounded-full bg-gradient-to-r from-neon via-mint to-violet shadow-glow"
+                    transition={{ delay: 0.1 + i * 0.06, duration: 0.7 }}
+                    className="h-full rounded-full bg-gradient-to-r from-accent via-violet to-neon"
                   />
                 </div>
               </motion.div>
