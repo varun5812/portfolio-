@@ -13,18 +13,31 @@ const icons = {
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="section-padding">
+    <section id="skills" className="section-padding relative z-10">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 text-center">
-          <h2 className="font-display text-4xl font-bold text-white sm:text-5xl">Technical Arsenal</h2>
-          <p className="mt-4 text-slate-400">Core competencies architected into a Bento Box grid</p>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-display text-4xl font-bold text-white sm:text-5xl"
+          >
+            Technical Arsenal
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="mt-4 text-slate-400"
+          >
+            Core competencies architected into a Bento Box grid
+          </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[minmax(200px,auto)]">
           {skills.map((group, i) => {
             const Icon = icons[group.category as keyof typeof icons] || Database;
-            
-            // Determine span based on index to create Bento layout
             const isLarge = i === 0 || i === 3;
             const spanClass = isLarge ? "md:col-span-2 lg:col-span-2" : "col-span-1";
 

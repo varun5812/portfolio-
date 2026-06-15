@@ -2,6 +2,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { projects } from "../../data/portfolio";
 import { Github, ArrowUpRight } from "lucide-react";
 import React from "react";
+import { MagneticButton } from "../ui/MagneticButton";
 
 const projectImages: Record<string, string> = {
   "AI Video Assistant: Meeting Intelligence Platform": "/images/generative_ai.png",
@@ -9,7 +10,6 @@ const projectImages: Record<string, string> = {
   "Heart Disease Prediction Web App": "/images/machine_learning.png"
 };
 
-// Tilt Card Component
 function TiltCard({ children }: { children: React.ReactNode }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -54,8 +54,23 @@ export function ProjectsSection() {
     <section id="projects" className="section-padding relative z-10">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 text-center">
-          <h2 className="font-display text-4xl font-bold text-white sm:text-5xl">Featured Work</h2>
-          <p className="mt-4 text-slate-400">Glass UI cards with 3D hover effects</p>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-display text-4xl font-bold text-white sm:text-5xl"
+          >
+            Featured Work
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="mt-4 text-slate-400"
+          >
+            Glass UI cards with 3D magnetic hover effects
+          </motion.p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
@@ -70,21 +85,19 @@ export function ProjectsSection() {
             >
               <TiltCard>
                 <div className="glass-panel flex h-full flex-col overflow-hidden group">
-                  {/* Image Preview */}
                   <div className="relative h-48 sm:h-60 overflow-hidden border-b border-white/10">
                     <div 
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                       style={{ backgroundImage: `url('${projectImages[project.title] || "/images/neural_networks.png"}')` }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bgSecondary/90 to-transparent" />
-                    <div className="absolute top-4 left-4">
-                      <span className="rounded-full bg-bgMain/80 px-3 py-1 border border-white/10 backdrop-blur-md text-[10px] font-semibold tracking-wider text-accentCyan uppercase">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] to-transparent opacity-90" />
+                    <div className="absolute top-4 left-4" style={{ transform: "translateZ(40px)" }}>
+                      <span className="rounded-full bg-[#0F172A]/80 px-3 py-1 border border-white/10 backdrop-blur-md text-[10px] font-semibold tracking-wider text-accentCyan uppercase">
                         {project.type}
                       </span>
                     </div>
                   </div>
 
-                  {/* Content */}
                   <div className="flex flex-col flex-grow p-6 sm:p-8" style={{ transform: "translateZ(30px)" }}>
                     <h3 className="font-display text-xl sm:text-2xl font-bold text-white">{project.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-slate-400 line-clamp-3">{project.summary}</p>
@@ -102,16 +115,16 @@ export function ProjectsSection() {
                       )}
                     </div>
 
-                    <div className="mt-8 flex flex-wrap items-center gap-3 mt-auto">
+                    <div className="mt-8 flex flex-wrap items-center gap-4 mt-auto" style={{ transform: "translateZ(40px)" }}>
                       {project.githubUrl && (
-                        <a href={project.githubUrl} target="_blank" rel="noreferrer" className="glass-button py-2 px-4 text-sm flex-1 sm:flex-none">
-                          <Github size={16} /> GitHub
-                        </a>
+                        <MagneticButton href={project.githubUrl} className="glass-button py-2 px-4 text-sm flex-1 sm:flex-none">
+                          <span className="flex items-center gap-2"><Github size={16} /> GitHub</span>
+                        </MagneticButton>
                       )}
                       {project.liveUrl && (
-                        <a href={project.liveUrl} target="_blank" rel="noreferrer" className="glass-button-primary py-2 px-4 text-sm flex-1 sm:flex-none">
-                          <ArrowUpRight size={16} /> Live Demo
-                        </a>
+                        <MagneticButton href={project.liveUrl} className="glass-button-primary py-2 px-4 text-sm flex-1 sm:flex-none">
+                          <span className="flex items-center gap-2"><ArrowUpRight size={16} /> Live Demo</span>
+                        </MagneticButton>
                       )}
                     </div>
                   </div>
