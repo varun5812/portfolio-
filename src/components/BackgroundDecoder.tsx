@@ -98,7 +98,7 @@ export function BackgroundDecoder() {
           className="absolute inset-0 bg-cover bg-center transition-all duration-300 ease-out"
           style={{
             backgroundImage: `url('${sec.image}')`,
-            opacity: sec.opacity * 0.22, // Keep text highly legible
+            opacity: sec.opacity * 0.42, // Increased from 0.22 to make details clearly visible
             filter: `blur(${sec.blur}px) saturate(1.4) contrast(1.15)`,
             transform: `scale(${1 + (sec.blur / 350)})`, // Zoom in slightly when blurred
             mixBlendMode: "screen"
@@ -106,7 +106,7 @@ export function BackgroundDecoder() {
         />
       ))}
       {/* Dark overlay grid to add texture and ensure text contrast */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(7,17,31,0.85)_100%)] opacity-90" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(7,17,31,0.85)_100%)] opacity-65" />
       <div className="absolute inset-0 bg-gradient-to-b from-base/60 via-transparent to-base/80" />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:50px_50px] opacity-[0.25] [mask-image:radial-gradient(circle,white,transparent_80%)]" />
     </div>
